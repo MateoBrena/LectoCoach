@@ -1,123 +1,148 @@
 "use client";
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-import { useState } from "react";
-
-export default function Home() {
-  const [text, setText] = useState("");
-  const [questions, setQuestions] = useState([]);
-  const [answers, setAnswers] = useState([]);
-  const [feedbacks, setFeedbacks] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  // Generar preguntas
-  const handleGenerate = async () => {
-    setLoading(true);
-    setError(null);
-    setQuestions([]);
-    setAnswers([]);
-    setFeedbacks([]);
-
-    try {
-      const res = await fetch("/api/generate-questions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, level: "primaria" }),
-      });
-
-      const data = await res.json();
-
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setQuestions(data.questions);
-        setAnswers(Array(data.questions.length).fill(""));
-        setFeedbacks(Array(data.questions.length).fill(""));
-      }
-    } catch (err) {
-      console.error(err);
-      setError("Error inesperado al generar preguntas");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Corregir respuesta individual
-  const handleCheckAnswer = async (index) => {
-    try {
-      const res = await fetch("/api/check-answer", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          question: questions[index],
-          answer: answers[index],
-          text,
-        }),
-      });
-      const data = await res.json();
-      const newFeedbacks = [...feedbacks];
-      newFeedbacks[index] = data.feedback;
-      setFeedbacks(newFeedbacks);
-    } catch (err) {
-      console.error(err);
-      const newFeedbacks = [...feedbacks];
-      newFeedbacks[index] = "Error al corregir la respuesta";
-      setFeedbacks(newFeedbacks);
-    }
-  };
+// Pequeño helper para reemplazar whileInView sin romper SSR
+function FadeIn({ children, delay = 0, className = "" }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-150px" });
 
   return (
-    <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">LectoCoach - Generador y Corrector de Preguntas</h1>
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
-      <textarea
-        rows={6}
-        className="border p-2 w-full mb-4"
-        placeholder="Pega aquí un texto para generar preguntas..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-black text-white px-6 py-10">
+      {/* HERO */}
+      <section className="max-w-5xl mx-auto text-center mb-24">
+        <motion.h1
+          className="text-5xl font-extrabold mb-6 leading-tight"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          LectoCoach  
+          <span className="text-blue-400"> — Aprende a comprender mejor</span>
+        </motion.h1>
 
-      <button
-        onClick={handleGenerate}
-        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
-        disabled={loading || !text.trim()}
-      >
-        {loading ? "Generando..." : "Generar preguntas"}
-      </button>
+        <motion.p
+          className="text-lg text-gray-300 max-w-2xl mx-auto mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
+          Una herramienta impulsada por IA diseñada para mejorar la comprensión lectora  
+          mediante preguntas inteligentes, correcciones inmediatas y retroalimentación personalizada.
+        </motion.p>
 
-      {error && <p className="text-red-500">{error}</p>}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          <Link
+            href="/lectocoach"
+            className="inline-block bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-lg font-semibold transition"
+          >
+            Probar LectoCoach
+          </Link>
+        </motion.div>
+      </section>
 
-      {questions.length > 0 && (
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Preguntas generadas:</h2>
-          {questions.map((q, i) => (
-            <div key={i} className="mb-4 border p-3 rounded">
-              <p className="font-medium">{i + 1}. {q}</p>
-              <input
-                type="text"
-                placeholder="Escribe tu respuesta aquí"
-                className="border p-1 w-full mb-2"
-                value={answers[i] || ""}
-                onChange={(e) => {
-                  const newAnswers = [...answers];
-                  newAnswers[i] = e.target.value;
-                  setAnswers(newAnswers);
-                }}
-              />
-              <button
-                className="bg-green-500 text-white px-3 py-1 rounded"
-                onClick={() => handleCheckAnswer(i)}
-              >
-                Revisar respuesta
-              </button>
-              {feedbacks[i] && (
-                <p className="mt-1 text-blue-600">{feedbacks[i]}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
+      {/* POR QUÉ IMPORTA */}
+      <section className="max-w-4xl mx-auto mb-20">
+        <FadeIn>
+          <h2 className="text-3xl font-bold mb-4">
+            ¿Por qué es importante la comprensión lectora?
+          </h2>
+        </FadeIn>
+
+        <FadeIn delay={0.2}>
+          <p className="text-gray-300 mb-4 leading-relaxed">
+            La comprensión lectora es una habilidad fundamental para el aprendizaje.  
+            No solo permite entender textos, sino también analizar, inferir, tomar decisiones,
+            resolver problemas y aprender de forma autónoma.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.4}>
+          <p className="text-gray-300 leading-relaxed">
+            Sin una buena comprensión lectora, los estudiantes tienen dificultades en todas las áreas
+            académicas, incluso en materias que no parecen relacionadas con la lectura.  
+            Es una de las competencias clave para el éxito educativo y profesional.
+          </p>
+        </FadeIn>
+      </section>
+
+      {/* PROBLEMÁTICA */}
+      <section className="max-w-4xl mx-auto mb-20">
+        <FadeIn>
+          <h2 className="text-3xl font-bold mb-4">El problema actual</h2>
+        </FadeIn>
+
+        <FadeIn delay={0.2}>
+          <p className="text-gray-300 mb-4 leading-relaxed">
+            Estudios recientes revelan que muchos estudiantes presentan dificultades para interpretar
+            textos, identificar ideas clave, hacer inferencias y relacionar información.  
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.4}>
+          <p className="text-gray-300 leading-relaxed">
+            Esto no solo afecta su rendimiento académico, sino también su capacidad para comprender
+            instrucciones, analizar información en la vida cotidiana y desarrollar pensamiento crítico.
+          </p>
+        </FadeIn>
+      </section>
+
+      {/* CÓMO AYUDA LECTOCOACH */}
+      <section className="max-w-4xl mx-auto mb-24">
+        <FadeIn>
+          <h2 className="text-3xl font-bold mb-4">¿Cómo ayuda LectoCoach?</h2>
+        </FadeIn>
+
+        <FadeIn delay={0.2}>
+          <ul className="space-y-4 text-gray-300">
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+              📘 Genera <strong>preguntas personalizadas</strong> según el texto.
+            </li>
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+              🔍 Evalúa tus respuestas y explica <strong>por qué son correctas o incorrectas</strong>.
+            </li>
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+              🧠 Trabaja tres áreas clave:  
+              <strong>literal, inferencial y comprensión global</strong>.
+            </li>
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+              ⭐ Ofrece un <strong>informe final</strong> con sugerencias de mejora.
+            </li>
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+              ⚡ Funciona en segundos y es accesible para cualquier estudiante.
+            </li>
+          </ul>
+        </FadeIn>
+      </section>
+
+      {/* CTA FINAL */}
+      <FadeIn className="text-center pb-20">
+        <Link
+          href="/lectocoach"
+          className="inline-block bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-xl font-semibold transition"
+        >
+          Comenzar ahora
+        </Link>
+      </FadeIn>
     </div>
   );
 }

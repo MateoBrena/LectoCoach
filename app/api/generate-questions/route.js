@@ -7,42 +7,77 @@ export async function POST(req) {
   try {
     const { text, level } = await req.json();
 
-    const prompt = `Actúa como un profesor de comprensión lectora. 
-Genera 5 preguntas sobre este texto para un estudiante de nivel ${level}: 
-"${text}". Devuelve solo las preguntas en JSON como array de strings.`;
+    const prompt = `
+Actúa como un profesor experto en comprensión lectora.
+
+Genera 8 preguntas sobre el siguiente texto, divididas así:
+- 3 preguntas de comprensión literal
+- 3 preguntas de comprensión inferencial
+- 2 preguntas de comprensión global
+
+Texto: """${text}"""
+
+Devuelve un JSON con este formato exacto:
+{
+  "literal": ["...", "...", "..."],
+  "inferencial": ["...", "...", "..."],
+  "global": ["...", "..."]
+}
+NO agregues explicaciones, comentarios ni texto adicional.
+    `;
 
     const response = await client.chatCompletion({
       model: "deepseek-ai/DeepSeek-V3.2:novita",
       messages: [{ role: "user", content: prompt }],
     });
 
-    let raw = response.choices[0].message.content;
+    let raw = response.choices[0].message.content.trim();
 
-    // 🔹 Limpiar bloque Markdown ```json ... ```
-    raw = raw.replace(/```json/g, "")
-             .replace(/```/g, "")
-             .trim();
+    // limpiar bloques de código tipo ```json ... ```
+    raw = raw.replace(/```json/g, "").replace(/```/g, "").trim();
 
-    let questions = [];
+    let parsed;
+
     try {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        // Quitar números iniciales si los hay
-        questions = parsed.map(q => q.replace(/^\d+\.\s*/, "").trim());
-      } else {
-        questions = [String(parsed).trim()];
-      }
-    } catch {
-      // fallback: separar por líneas
-      questions = raw.split("\n").map(q => q.trim()).filter(q => q);
+      parsed = JSON.parse(raw);
+    } catch (err) {
+      console.error("No se pudo parsear JSON. Respuesta cruda:", raw);
+      return NextResponse.json(
+        { error: "El modelo devolvió una respuesta inválida." },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({ questions });
+    // Validación mínima
+    if (
+      !parsed.literal ||
+      !parsed.inferencial ||
+      !parsed.global ||
+      !Array.isArray(parsed.literal) ||
+      !Array.isArray(parsed.inferencial) ||
+      !Array.isArray(parsed.global)
+    ) {
+      return NextResponse.json(
+        { error: "El JSON generado no tiene el formato esperado." },
+        { status: 500 }
+      );
+    }
+
+    // Normalizar: eliminar numeración si la IA la agrega
+    const clean = {
+      literal: parsed.literal.map(q => q.replace(/^\d+\.\s*/, "").trim()),
+      inferencial: parsed.inferencial.map(q => q.replace(/^\d+\.\s*/, "").trim()),
+      global: parsed.global.map(q => q.replace(/^\d+\.\s*/, "").trim()),
+    };
+
+    return NextResponse.json({ questions: clean });
+
   } catch (error) {
     console.error("Error API Hugging Face:", error);
     return NextResponse.json(
-      { error: "Algo salió mal con Hugging Face" },
+      { error: "Error inesperado al generar preguntas" },
       { status: 500 }
     );
   }
 }
+
