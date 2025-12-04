@@ -32,10 +32,7 @@ NO agregues explicaciones, comentarios ni texto adicional.
     });
 
     let raw = response.choices[0].message.content.trim();
-
-    // limpiar bloques de código tipo ```json ... ```
-    raw = raw.replace(/```json/g, "").replace(/```/g, "").trim();
-
+  
     let parsed;
 
     try {
@@ -63,14 +60,7 @@ NO agregues explicaciones, comentarios ni texto adicional.
       );
     }
 
-    // Normalizar: eliminar numeración si la IA la agrega
-    const clean = {
-      literal: parsed.literal.map(q => q.replace(/^\d+\.\s*/, "").trim()),
-      inferencial: parsed.inferencial.map(q => q.replace(/^\d+\.\s*/, "").trim()),
-      global: parsed.global.map(q => q.replace(/^\d+\.\s*/, "").trim()),
-    };
-
-    return NextResponse.json({ questions: clean });
+    return NextResponse.json({ questions: parsed });
 
   } catch (error) {
     console.error("Error API Hugging Face:", error);

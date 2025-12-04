@@ -11,7 +11,6 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full bg-black/70 backdrop-blur border-b border-white/10 z-50">
       <div className="max-w-6xl mx-auto p-4 flex justify-between items-center">
-        {/* Logo */}
         <motion.h1
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,13 +30,12 @@ export default function Header() {
       </Link>
         </motion.h1>
 
-        {/* Desktop menu */}
         <nav className="hidden md:flex gap-6 text-lg">
           <Link className="hover:text-blue-400 transition" href="/lectocoach">LectoCoach</Link>
           <Link className="hover:text-blue-400 transition" href="/comprension">Comprensión lectora</Link>
+          <Link className="hover:text-blue-400 transition" href="/como-funciona">Cómo funciona</Link>
         </nav>
 
-        {/* Mobile toggle */}
         <button
           className="md:hidden text-white text-3xl"
           onClick={() => setOpen(!open)}
@@ -47,7 +45,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
@@ -59,6 +56,9 @@ export default function Header() {
           </Link>
           <Link className="hover:text-blue-400 transition" href="/comprension" onClick={() => setOpen(false)}>
             Comprensión lectora
+          </Link>
+          <Link className="hover:text-blue-400 transition" href="/como-funciona" onClick={() => setOpen(false)}>
+            Cómo funciona
           </Link>
         </motion.nav>
       )}

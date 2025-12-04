@@ -8,7 +8,6 @@ export default function LandingPage() {
       
       <Hero />
 
-      {/* POR QUÉ IMPORTA */}
       <section className="max-w-4xl mx-auto mb-20">
         <FadeIn>
           <h2 className="text-3xl font-bold mb-4">
@@ -33,7 +32,6 @@ export default function LandingPage() {
         </FadeIn>
       </section>
 
-      {/* PROBLEMÁTICA */}
       <section className="max-w-4xl mx-auto mb-20">
         <FadeIn>
           <h2 className="text-3xl font-bold mb-4">El problema actual</h2>
@@ -41,7 +39,7 @@ export default function LandingPage() {
 
         <FadeIn delay={0.2}>
           <p className="text-gray-300 mb-4 leading-relaxed">
-            Estudios recientes revelan que muchos estudiantes presentan dificultades para interpretar
+            Estudios recientes revelan que la mayoría estudiantes  en Argentina presentan dificultades para interpretar
             textos, identificar ideas clave, hacer inferencias y relacionar información.  
           </p>
         </FadeIn>
@@ -54,7 +52,6 @@ export default function LandingPage() {
         </FadeIn>
       </section>
 
-      {/* CÓMO AYUDA */}
       <section className="max-w-4xl mx-auto mb-24">
         <FadeIn>
           <h2 className="text-3xl font-bold mb-4">¿Cómo ayuda LectoCoach?</h2>
@@ -69,8 +66,8 @@ export default function LandingPage() {
               🔍 Evalúa tus respuestas y explica <strong>por qué son correctas o incorrectas</strong>.
             </li>
             <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
-              🧠 Trabaja tres áreas clave:  
-              <strong>literal, inferencial y comprensión global</strong>.
+              🧠 Trabaja tres áreas clave de la comprensión:  
+              <strong> literal, inferencial y global</strong>.
             </li>
             <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
               ⭐ Ofrece un <strong>informe final</strong> con sugerencias de mejora.
@@ -82,7 +79,6 @@ export default function LandingPage() {
         </FadeIn>
       </section>
 
-      {/* CTA FINAL */}
       <FadeIn className="text-center pb-20">
         <Link
           href="/lectocoach"
