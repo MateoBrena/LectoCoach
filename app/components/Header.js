@@ -19,7 +19,7 @@ export default function Header() {
         >
         <Link href="/" className="flex items-center gap-3">
             <Image
-                src="/logo-lc.png"   // ← Reemplaza esta ruta con la imagen real
+                src="/logo-lc.png"
                 alt="LectoCoach Logo"
                 width={40}
                 height={40}

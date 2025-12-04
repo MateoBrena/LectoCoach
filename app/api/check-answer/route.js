@@ -34,7 +34,7 @@ No agregues texto adicional, ni listas, ni notas, ni JSON.
     `;
 
     const response = await client.chatCompletion({
-      model: "deepseek-ai/DeepSeek-V3.2:novita",
+      model: "openai/gpt-oss-20b:cheapest",
       messages: [{ role: "user", content: prompt }],
     });
 

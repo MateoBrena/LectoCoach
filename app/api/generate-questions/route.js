@@ -5,7 +5,7 @@ const client = new InferenceClient(process.env.HF_TOKEN);
 
 export async function POST(req) {
   try {
-    const { text, level } = await req.json();
+    const { text } = await req.json();
 
     const prompt = `
 Actúa como un profesor experto en comprensión lectora.
@@ -27,7 +27,7 @@ NO agregues explicaciones, comentarios ni texto adicional.
     `;
 
     const response = await client.chatCompletion({
-      model: "deepseek-ai/DeepSeek-V3.2:novita",
+      model: "openai/gpt-oss-20b:cheapest",
       messages: [{ role: "user", content: prompt }],
     });
 

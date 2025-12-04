@@ -1,64 +1,12 @@
-"use client";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
-// Pequeño helper para reemplazar whileInView sin romper SSR
-function FadeIn({ children, delay = 0, className = "" }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-150px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import Hero from "./components/Hero";
+import FadeIn from "./components/FadeIn";
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-black text-white px-6 py-10">
-      {/* HERO */}
-      <section className="max-w-5xl mx-auto text-center mb-24">
-        <motion.h1
-          className="text-5xl font-extrabold mb-6 leading-tight"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          LectoCoach  
-          <span className="text-blue-400"> — Aprende a comprender mejor</span>
-        </motion.h1>
-
-        <motion.p
-          className="text-lg text-gray-300 max-w-2xl mx-auto mb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        >
-          Una herramienta impulsada por IA diseñada para mejorar la comprensión lectora  
-          mediante preguntas inteligentes, correcciones inmediatas y retroalimentación personalizada.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          <Link
-            href="/lectocoach"
-            className="inline-block bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-lg font-semibold transition"
-          >
-            Probar LectoCoach
-          </Link>
-        </motion.div>
-      </section>
+      
+      <Hero />
 
       {/* POR QUÉ IMPORTA */}
       <section className="max-w-4xl mx-auto mb-20">
@@ -106,7 +54,7 @@ export default function LandingPage() {
         </FadeIn>
       </section>
 
-      {/* CÓMO AYUDA LECTOCOACH */}
+      {/* CÓMO AYUDA */}
       <section className="max-w-4xl mx-auto mb-24">
         <FadeIn>
           <h2 className="text-3xl font-bold mb-4">¿Cómo ayuda LectoCoach?</h2>

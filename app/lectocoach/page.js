@@ -28,7 +28,7 @@ export default function Home() {
       const res = await fetch("/api/generate-questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, level: "secundario" }),
+        body: JSON.stringify({ text }),
       });
 
       const data = await res.json();
@@ -193,13 +193,13 @@ export default function Home() {
               const key = `${type}-${idx}`;
 
               return (
-                <div key={key} className="mb-4 border p-3 rounded">
-                  <p className="font-medium">{q}</p>
+                <div key={key} className="bg-gray-900 mb-4 border p-3 rounded">
+                  <p className="font-medium mb-3">{q}</p>
 
                   <input
                     type="text"
                     placeholder="Escribe tu respuesta aquí"
-                    className="border p-1 w-full mb-2"
+                    className="border p-1 w-full mb-4"
                     value={answers[key] || ""}
                     onChange={(e) =>
                       setAnswers({ ...answers, [key]: e.target.value })
@@ -210,7 +210,7 @@ export default function Home() {
                     className={`px-3 py-1 rounded text-white 
                       ${results[key] !== undefined 
                         ? "bg-gray-500 cursor-not-allowed" 
-                        : "bg-green-500 hover:bg-green-600"}`}
+                        : "bg-blue-500 hover:bg-blue-700"}`}
                     onClick={() => handleCheckAnswer(type, idx)}
                     disabled={results[key] !== undefined}
                   >
