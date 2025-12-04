@@ -4,6 +4,10 @@ import Header from "./components/Header";
 export const metadata = {
   title: "LectoCoach",
   description: "Mejora tu comprensión lectora",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
