@@ -85,7 +85,7 @@ export default function ComprensionLectoraPage() {
                 <h3 className="text-xl font-semibold mb-2">Lectura sin participación activa</h3>
                 <p className="text-gray-300">
                   La comprensión falla cuando los estudiantes leen de forma pasiva, 
-                  sin conectar ideas ni anticipar significados
+                  sin conectar ideas ni comprender significados.
                 </p>
               </div>
             </div>
@@ -99,9 +99,10 @@ export default function ComprensionLectoraPage() {
             </h2>
 
             <p className="text-gray-300 leading-relaxed">
-              Los resultados han empeorado a lo largo de los años, el porcentaje 
-              de estudiantes por debajo del nivel mínimo se ha mantenido elevado y sigue en aumento. Esto 
-              sugiere la necesidad de replantear las estrategias pedagógicas y 
+              Los resultados no han variado mucho a lo largo de los años, el porcentaje 
+              de estudiantes por debajo del nivel mínimo se ha mantenido elevado. Esto quiere decir
+              que más de la mitad de los chicos en edad adolescente no llegan a un nivel mínimo de lectura 
+              y comprensión de texto. Los datos sugieren la necesidad de replantear las estrategias pedagógicas y 
               fortalecer el acompañamiento.
             </p>
 
@@ -110,6 +111,9 @@ export default function ComprensionLectoraPage() {
                 Porcentaje de estudiantes bajo el nivel mínimo (PISA Argentina)
               </h3>
               <PISALineChart />
+              <p className="text-center text-gray-400 mt-8 italic">
+                *No se muestran resultados de las pruebas PISA 2015 ya que Argentina no produjo muestras representativas
+              </p>
             </div>
           </section>
         </FadeIn>

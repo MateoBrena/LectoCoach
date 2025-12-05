@@ -51,7 +51,45 @@ export default function LandingPage() {
           </p>
         </FadeIn>
       </section>
+      <section className="max-w-4xl mx-auto mb-24">
+        <FadeIn>
+          <h2 className="text-3xl font-bold mb-8">
+            ¿Qué hace único a LectoCoach?
+          </h2>
+        </FadeIn>
 
+        <FadeIn delay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div className="bg-gray-900 p-6 rounded-2xl border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
+              <h3 className="text-2xl font-bold mb-4">❌ IA Tradicional</h3>
+              <ul className="space-y-3 text-gray-300">
+                <li>• Resume textos por vos.</li>
+                <li>• Te da las respuestas directamente.</li>
+                <li>• No mejora tus habilidades reales.</li>
+                <li>• Fomenta dependencia de la herramienta.</li>
+              </ul>
+            </div>
+
+            <div className="bg-gray-900 p-6 rounded-2xl border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
+              <h3 className="text-2xl font-bold mb-4">✅ LectoCoach</h3>
+              <ul className="space-y-3 text-gray-300">
+                <li>• Te guía para comprender por tu cuenta.</li>
+                <li>• Entrena pensamiento crítico y lectura profunda.</li>
+                <li>• Te hace preguntas y evalúa tus respuestas.</li>
+                <li>• Diseñado para que mejores, no para que copies.</li>
+              </ul>
+            </div>
+
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.4}>
+          <p className="text-center text-gray-400 mt-8 italic">
+            LectoCoach no hace el trabajo por vos — te ayuda para que lo hagas mejor.
+          </p>
+        </FadeIn>
+      </section>
       <section className="max-w-4xl mx-auto mb-24">
         <FadeIn>
           <h2 className="text-3xl font-bold mb-4">¿Cómo ayuda LectoCoach?</h2>
@@ -59,20 +97,20 @@ export default function LandingPage() {
 
         <FadeIn delay={0.2}>
           <ul className="space-y-4 text-gray-300">
-            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               📘 Genera <strong>preguntas personalizadas</strong> según el texto.
             </li>
-            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               🔍 Evalúa tus respuestas y explica <strong>por qué son correctas o incorrectas</strong>.
             </li>
-            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               🧠 Trabaja tres áreas clave de la comprensión:  
               <strong> literal, inferencial y global</strong>.
             </li>
-            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               ⭐ Ofrece un <strong>informe final</strong> con sugerencias de mejora.
             </li>
-            <li className="bg-gray-900 p-4 rounded-lg border border-gray-700">
+            <li className="bg-gray-900 p-4 rounded-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               ⚡ Funciona en segundos y es accesible para cualquier estudiante.
             </li>
           </ul>

@@ -198,21 +198,21 @@ const handleReset = () => {
           ? "Excelente comprensión literal."
           : literalCorrect === 0
           ? "Debe mejorar mucho la comprensión literal: extraer información directa del texto."
-          : "Comprensión literal aceptable, pero puede mejorar en identificar datos explícitos.",
+          : "Comprensión literal parcial, pero puede mejorar en identificar datos explícitos.",
 
       inferencial:
         inferCorrect === inferTotal
-          ? "Muy buena comprensión inferencial."
+          ? "Excelente comprensión inferencial."
           : inferCorrect === 0
-          ? "Debe mejorar la comprensión inferencial: deducir información a partir de pistas."
+          ? "Debe mejorar mucho la comprensión inferencial: deducir información a partir de pistas."
           : "Comprensión inferencial parcial: debe practicar interpretar información implícita.",
 
       global:
         globalCorrect === globalTotal
           ? "Excelente comprensión global y del mensaje principal."
           : globalCorrect === 0
-          ? "Debe mejorar en comprensión global: captar la idea general y propósito del texto."
-          : "Comprensión global moderada: entiende la idea principal, pero debe mejorar.",
+          ? "Debe mejorar mucho en comprensión global: captar la idea general y propósito del texto."
+          : "Comprensión global parcial: entiende la idea principal, pero debe mejorar.",
     };
 
     setReport(report);

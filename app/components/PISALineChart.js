@@ -9,10 +9,11 @@ import {
 } from "recharts";
 
 const data = [
-  { year: 2012, value: 46 },
-  { year: 2015, value: 52 },
-  { year: 2018, value: 53 },
-  { year: 2022, value: 53 },
+  { year: 2006, value: 57.9 },
+  { year: 2009, value: 51.6 },
+  { year: 2012, value: 53.6 },
+  { year: 2018, value: 52.1 },
+  { year: 2022, value: 54.5 },
 ];
 
 export default function PISALineChart() {

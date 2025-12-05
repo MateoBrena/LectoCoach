@@ -23,7 +23,7 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.8 }}
       >
         Una herramienta impulsada por IA diseñada para mejorar la comprensión lectora  
-        mediante preguntas inteligentes, correcciones inmediatas y retroalimentación personalizada.
+        mediante preguntas inteligentes, correcciones rápidas y retroalimentación instantánea.
       </motion.p>
 
       <motion.div

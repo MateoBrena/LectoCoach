@@ -9,9 +9,11 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Argentina", value: 53 },
-  { name: "LatAm", value: 47 },
-  { name: "OCDE", value: 26 },
+  { name: "LatAm", value: 55 },
+  { name: "Argentina", value: 54.5 },
+  { name: "Uruguay", value: 41 },
+  { name: "Chile", value: 34 },
+  { name: "OCDE", value: 26.3 },
 ];
 
 export default function PISABarChart() {

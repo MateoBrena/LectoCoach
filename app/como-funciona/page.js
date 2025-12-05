@@ -4,7 +4,7 @@ import FadeIn from "../components/FadeIn";
 export default function ComoFuncionaPage() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-16">
-      <div className="max-w-5xl mx-auto space-y-20">
+      <div className="max-w-4xl mx-auto space-y-20">
 
         <FadeIn>
           <section className="text-center space-y-6">
@@ -22,7 +22,7 @@ export default function ComoFuncionaPage() {
         <div className="grid md:grid-cols-3 gap-8">
 
           <FadeIn>
-            <div className="bg-[#111] p-8 rounded-2xl shadow-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
+            <div className="min-h-full bg-[#111] p-8 rounded-2xl shadow-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-3xl">📘</div>
                 <h2 className="text-2xl font-semibold">Literal</h2>
@@ -42,7 +42,7 @@ export default function ComoFuncionaPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="bg-[#111] p-8 rounded-2xl shadow-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
+            <div className="min-h-full bg-[#111] p-8 rounded-2xl shadow-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-3xl">💡</div>
                 <h2 className="text-2xl font-semibold">Inferencial</h2>
@@ -62,7 +62,7 @@ export default function ComoFuncionaPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="bg-[#111] p-8 rounded-2xl shadow-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
+            <div className="min-h-full bg-[#111] p-8 rounded-2xl shadow-lg border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-3xl">🌍</div>
                 <h2 className="text-2xl font-semibold">Global</h2>
@@ -71,7 +71,7 @@ export default function ComoFuncionaPage() {
               <p className="text-gray-300 leading-relaxed">
                 Mide la comprensión del 
                 <strong> sentido general</strong> del texto
-                y la capacidad de resumir el mismo.
+                y la capacidad de resumirlo.
               </p>
 
               <ul className="mt-4 space-y-2 text-gray-400 text-sm">
@@ -84,7 +84,7 @@ export default function ComoFuncionaPage() {
         </div>
 
         <FadeIn>
-          <section className="bg-[#111] p-10 mt-4 rounded-2xl shadow-lg border border-gray-800 space-y-6 max-w-4xl mx-auto">
+          <section className="bg-[#111] p-10 mt-4 rounded-2xl shadow-lg space-y-6 max-w-4xl mx-auto border border-gray-800 transition hover:shadow-xl hover:border-gray-700">
             <div className="flex items-center gap-3">
               <span className="text-3xl">📄</span>
               <h2 className="text-2xl font-semibold">Reporte final de LectoCoach</h2>
