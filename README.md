@@ -13,7 +13,7 @@ La comprensión lectora es una de las habilidades más críticas en la educació
 
 El impacto esperado de LectoCoach es mejorar gradualmente la capacidad de interpretar textos, desarrollando habilidades de análisis, inferencia y síntesis. También pretende promover el aprendizaje autónomo y aumentar la motivación de aprender mediante práctica interactiva y feedback instantáneo.
 
-## Cómo utilizar
+## Modo de uso
 Para ver el proyecto y probar su uso simplemente se debe ingresar a la página de LectoCoach haciendo click [aquí](https://lectocoach-dogb4pbb0-mateo-brenas-projects.vercel.app/)
 
 ## Tecnologías utilizadas
@@ -75,8 +75,8 @@ El backend utiliza API Routes de Next.js, donde cada endpoint procesa tareas esp
 │   │   ├── Hero.jsx
 │   │   ├── FadeIn.jsx
 │   │   ├── Header.js
-│   │   ├── PISABARchart.js
-│   │   └── PISABARChart.js
+│   │   ├── PISABarchart.js
+│   │   └── PISALineChart.js
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── layout.js
@@ -90,16 +90,14 @@ El backend utiliza API Routes de Next.js, donde cada endpoint procesa tareas esp
 └── README.md
 ```
 
-#### Carpeta app/api/ – Endpoints del backend
+#### Endpoints del backend – Carpeta app/api/ 
 Dentro de app/api/ se encuentran las API Routes de Next.js, que actúan como el backend del proyecto. Cada carpeta representa un endpoint y contiene un archivo route.js que procesa una solicitud específica.
 
 <ul>
-  <li>generate-questions/route.js</li>
-  <li>evaluate-answers/route.js</li>
+  <li>generate-questions/route.js: Recibe el texto enviado por el usuario y genera preguntas de comprensión (literal, inferencial y global) utilizando la API de Hugging Face.</li>
+  <li>evaluate-answers/route.js: Evalúa las respuestas del usuario y devuelve explicaciones y correcciones.</li>
 </ul>
 
-generate-questions/route.js: Recibe el texto enviado por el usuario y genera preguntas de comprensión (literal, inferencial y global) utilizando la API de Hugging Face.
-evaluate-answers/route.js: Evalúa las respuestas del usuario y devuelve explicaciones y correcciones.
 
 #### Rutas del frontend — Carpetas con page.jsx
 Next.js utiliza el sistema file-based routing, por lo que cada carpeta dentro de app/ con un archivo page.jsx se convierte automáticamente en una ruta pública del sitio.
@@ -107,8 +105,8 @@ Next.js utiliza el sistema file-based routing, por lo que cada carpeta dentro de
 <ul>
   <li>app/page.jsx: La landing page principal del proyecto (/).</li>
   <li>app/lectocoach/page.jsx: Página donde el usuario ingresa un texto, obtiene las preguntas y completa la actividad.</li>
-  <li>app/comprension/page.jsx: Sección de datos e informativa sobre la importancia de la comprensión lectora.</li>
-  <li>app/como-funciona/page.jsx: Explicación simple  de cómo funciona la herramienta LectoCoach.</li>
+  <li>app/comprension/page.jsx: Sección de datos e información sobre la comprensión lectora.</li>
+  <li>app/como-funciona/page.jsx: Explicación simple de cómo funciona la herramienta LectoCoach.</li>
 </ul>
 
 #### Layout global del proyecto — layout.js
@@ -146,19 +144,17 @@ El flujo completo funciona de la siguiente manera:
 [Evaluación PISA 2015 (No representativa)](https://www.infobae.com/tendencias/2016/12/06/pisa-2015-otra-vez-la-calidad-educativa-de-los-alumnos-argentinos-bajo-la-lupa/)
 
 
-[Evaluación PISA 2018](https://www.argentina.gob.ar/sites/default/files/argentina_en_pisa_2018_informe_de_resultados.pdf). Página 65
+[Evaluación PISA ARGENTINA 2018](https://www.argentina.gob.ar/sites/default/files/argentina_en_pisa_2018_informe_de_resultados.pdf). Página 65
 
 
-[Evaluación PISA 2022](https://www.argentina.gob.ar/sites/default/files/argentina_en_pisa_digital_2022_vf.pdf). Página 98
+[Evaluación PISA ARGENTINA 2022](https://www.argentina.gob.ar/sites/default/files/argentina_en_pisa_digital_2022_vf.pdf). Página 98
+
+
+[Datos PISA Argentina 2018](https://www.argentina.gob.ar/noticias/conclusiones-sobre-el-desempeno-de-la-argentina-en-la-evaluacion-pisa-2018)
 
 
 [Datos PISA 2022 LatAm](https://www.infobae.com/america/america-latina/2023/12/05/el-uno-por-uno-de-los-paises-de-latinoamerica-en-las-pruebas-pisa-los-que-mejoraron-y-los-de-peor-desempeno/)
 
 
-[Datos PISA 2022 y OCDE](https://argentinosporlaeducacion.org/informe/como-le-fue-a-argentina-en-las-pruebas-pisa-2022/)
-
-
-
-
-
+[Datos PISA 2022 Argentina y OCDE](https://argentinosporlaeducacion.org/informe/como-le-fue-a-argentina-en-las-pruebas-pisa-2022/)
 
